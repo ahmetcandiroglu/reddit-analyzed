@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <title>Reddit Analyzed</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css">
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous" defer></script>
+
+    <script src="app.js" defer></script>
+</head>
+<body>
+
+<nav class="navbar navbar-light bg-light justify-content-between">
+    <a class="navbar-brand"><b>Reddit Analyzed</b></a>
+
+    <h2 id="current-sub"><span class="badge badge-success" id="num-similar"></span></h2>
+
+    <div class="d-inline">
+        <select class="custom-select" id="select-algorithm">
+            <option selected value="1">SimRank</option>
+            <option value="2">Cosine</option>
+        </select>
+    </div>
+
+    <div class="form-inline">
+        <input id="search-input" class="form-control mr-sm-2" type="search" placeholder="Search subreddit" aria-label="Search">
+        <button id="search-btn" class="btn btn-outline-dark my-2 my-sm-0" type="button">Search</button>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div id="cy" class="col-8"></div>
+
+        <div id="similar-div" class="col-4 text-center">
+            <h4 class="col-9">Similar Subreddits</h4>
+
+            <ul id="similar-list" class="col-9 list-group list-group-flush"></ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

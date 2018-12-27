@@ -1,0 +1,18 @@
+{
+  "name": "reddit-analyzed",
+  "version": "1.0.0",
+  "dependencies": {
+    "cytoscape": "^3.3.1",
+    "cytoscape-cola": "latest",
+    "gh-pages": "^2.0.1",
+    "parcel-bundler": "^1.10.3"
+  },
+  "scripts": {
+    "start": "parcel index.html",
+    "predeploy": "rmdir /s /q dist && parcel build index.html --public-url /reddit-analyzed",
+    "deploy": "gh-pages -d dist"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.8"
+  }
+}
