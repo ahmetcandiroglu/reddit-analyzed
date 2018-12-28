@@ -13,6 +13,8 @@ import config
 source_table = 'sub_authors'
 minhash_output_table = 'common_users'
 simrank_output_table = 'simrank_sims'
+post_table = 'post'
+comment_table = 'comment'
 
 author_postfix = '0000'
 
@@ -23,6 +25,9 @@ def connect_db():
                            password=config.DB_PASSWORD,
                            db=config.DB_NAME,
                            connect_timeout=6000)
+
+
+# SimRank and MinHash functions
 
 
 def get_sub_ids(connection):
@@ -85,3 +90,30 @@ def insert_sub_similarities(connection, base_id, sims, limit=0.01):
     cursor.executemany(sql, [(base_id, sub_id, sims[sub_id]) for sub_id in sims
                              if base_id != sub_id and sims[sub_id] > limit])
     connection.commit()
+
+
+# Data crawler functions
+
+
+def check_post(connection, post_id):
+    cursor = connection.cursor()
+    sql = f"SELECT * FROM {post_table} WHERE id= %s"
+    return cursor.execute(sql, post_id)
+
+
+def insert_post(connection, post_id, username, sub_name, title, score, nsfw):
+    cursor = connection.cursor()
+    sql = f"INSERT INTO {post_table} (id, username, sub_name, title, score, nsfw) VALUES (%s, %s, %s, %s, %s, %s)"
+    try:
+        cursor.execute(sql, (post_id, username, sub_name, title, score, nsfw))
+    except IntegrityError:
+        print(f'Error! Could not insert post {post_id}')
+
+
+def insert_comment(connection, comment_id, post_id, username):
+    cursor = connection.cursor()
+    sql = f"INSERT INTO {comment_table} (id, post_id, username) VALUES (%s, %s, %s)"
+    try:
+        cursor.execute(sql, (comment_id, post_id, username))
+    except IntegrityError:
+        print(f'Error! Could not insert comment {comment_id}')
