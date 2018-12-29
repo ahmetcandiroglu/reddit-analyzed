@@ -32,7 +32,7 @@ Similar subs to [r/canada](https://www.reddit.com/r/canada)
 ![Similar subreddits to soccer](assets/img/soccer.png "Similar subreddits to soccer")
 Similar subs to [r/soccer](https://www.reddit.com/r/soccer)
 
-<hr>
+<br>
 
 ## Algorithms Used
 
